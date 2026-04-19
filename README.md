@@ -1,2 +1,2 @@
 # rw100
-bài tập Java core
+bài tập Java Core
