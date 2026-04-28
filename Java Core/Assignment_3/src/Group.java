@@ -8,6 +8,8 @@ public class Group {
     private LocalDateTime createDate;
     private Account[] accounts;
 
+    public Group() {
+    }
 
     public Group(int groupId, String groupName, Account creator, LocalDateTime createDate) {
         this.groupId = groupId;
