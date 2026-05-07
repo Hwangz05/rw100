@@ -13,13 +13,15 @@ public class QLCB {
     }
 
     public void timTheoTen(String ten) {
+        boolean check = false;
         for (CanBo cb : danhSachCanBo) {
             if (cb.getHoTen().equalsIgnoreCase(ten)) {
                 System.out.println(cb);
+                check = true;
             }
-            else {
-                System.out.println("Không tìm thấy cán bộ có tên: " + ten);
-            }
+        }
+        if(!check){
+            System.out.println("Không tìm thấy cán bộ có tên: " + ten);
         }
     }
 
@@ -31,11 +33,17 @@ public class QLCB {
     }
 
     public void xoaTheoTen(String ten) {
-        if (danhSachCanBo.removeIf(cb -> cb.getHoTen().equalsIgnoreCase(ten))) {
-            System.out.println("Đã xóa cán bộ có tên: " + ten);
-        }else {
+        List<CanBo> canBoToRemove = new ArrayList<>();
+        for (CanBo cb : danhSachCanBo) {
+            if (cb.getHoTen().equalsIgnoreCase(ten)) {
+                canBoToRemove.add(cb);
+            }
+        }
+        if (!canBoToRemove.isEmpty()) {
+            danhSachCanBo.removeAll(canBoToRemove);
+            System.out.println("Đã xóa " + canBoToRemove.size() + " cán bộ có tên: " + ten);
+        } else {
             System.out.println("Không tìm thấy cán bộ có tên: " + ten);
         }
-
     }
 }

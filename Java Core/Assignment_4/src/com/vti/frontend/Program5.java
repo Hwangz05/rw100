@@ -24,39 +24,56 @@ public class Program5 {
 
             switch (choice) {
                 case "1":
-                    System.out.print("Nhập loại (1: CN, 2: KS, 3: NV): ");
-                    int type = sc.nextInt();
-                    sc.nextLine();
-
+                    System.out.print("Nhập  thông tin:  ");
                     System.out.print("Tên: ");
                     String ten = sc.nextLine();
-
                     System.out.print("Tuổi: ");
                     int tuoi = sc.nextInt();
                     sc.nextLine();
-
-                    System.out.print("Giới tính (NAM/NU/KHAC): ");
-                    CanBo.GioiTinh gt = CanBo.GioiTinh.valueOf(sc.nextLine().toUpperCase());
+                    System.out.print("Giới tính: 1. NAM   2. NU   KHAC. KHAC ");
+                    String gtInput = sc.nextLine();
+                    CanBo.GioiTinh gt;
+                    switch (gtInput) {
+                        case "1":
+                            gt = CanBo.GioiTinh.NAM;
+                            break;
+                        case "2":
+                            gt = CanBo.GioiTinh.NU;
+                            break;
+                        default:
+                            gt = CanBo.GioiTinh.KHAC;
+                    }
 
                     System.out.print("Địa chỉ: ");
                     String dc = sc.nextLine();
 
-                    if (type == 1) {
-                        System.out.print("Bậc: ");
-                        int bac = sc.nextInt();
-                        sc.nextLine();
-                        qlcb.themCanBo(new CongNhan(ten, tuoi, gt, dc, bac));
-                    } else if (type == 2) {
-                        System.out.print("Ngành: ");
-                        String nganh = sc.nextLine();
-                        qlcb.themCanBo(new KySu(ten, tuoi, gt, dc, nganh));
-                    } else {
-                        System.out.print("Công việc: ");
-                        String cv = sc.nextLine();
-                        qlcb.themCanBo(new NhanVien(ten, tuoi, gt, dc, cv));
-                    }
-                    break;
+                    System.out.print("Chọn loại cán bộ: 1. Công nhân   2. Kỹ sư   3. Nhân viên: ");
+                    int type = sc.nextInt();
+                    sc.nextLine();
 
+                    switch (type) {
+                        case 1:
+                            System.out.print("Bậc: ");
+                            int bac = sc.nextInt();
+                            sc.nextLine();
+                            qlcb.themCanBo(new CongNhan(ten, tuoi, gt, dc, bac));
+                            System.out.println("Thêm công nhân thành công!");
+                            break;
+                        case 2:
+                            System.out.print("Ngành: ");
+                            String nganh = sc.nextLine();
+                            qlcb.themCanBo(new KySu(ten, tuoi, gt, dc, nganh));
+                            System.out.println("Thêm kỹ sư thành công!");
+                            break;
+                        case 3:
+                            System.out.print("Công việc: ");
+                            String cv = sc.nextLine();
+                            qlcb.themCanBo(new NhanVien(ten, tuoi, gt, dc, cv));
+                            System.out.println("Thêm nhân viên thành công!");
+                            break;
+                        default:
+                            System.out.println("Loại cán bộ không hợp lệ!");
+                    }
                 case "2":
                     System.out.print("Nhập tên cần tìm: ");
                     qlcb.timTheoTen(sc.nextLine());
